@@ -40,7 +40,6 @@ fun MatchCard() {
     }
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 private fun MatchTime(
     text: String
@@ -75,7 +74,7 @@ private fun Teams() {
         TeamLogo()
         Text(
             modifier = Modifier.padding(horizontal = 24.dp),
-            text = "VS",
+            text = "vs",
             color = colors.white50Percent
         )
         TeamLogo()
@@ -95,7 +94,11 @@ private fun TeamLogo() {
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "Team name",
-            color = Color.White
+            color = Color.White,
+            style = TextStyle.Default.copy(
+                fontSize = 12.sp,
+                fontWeight = FontWeight.W400
+            )
         )
     }
 }

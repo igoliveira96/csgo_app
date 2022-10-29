@@ -14,6 +14,13 @@ object Versions {
         const val accompanist = "0.25.1"
     }
 
+    object External {
+        const val coroutines = "1.6.4"
+        const val gson = "2.9.1"
+        const val hilt = "2.42"
+        const val hiltCompose = "1.0.0"
+    }
+
     object Test {
         const val jUnit = "4.13.2"
     }

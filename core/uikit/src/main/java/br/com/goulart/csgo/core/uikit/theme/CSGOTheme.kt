@@ -11,10 +11,10 @@ val LocalAppColors = compositionLocalOf { AppColors() }
 fun CSGOTheme(
     content: @Composable () -> Unit
 ) {
-    val raisinBlack = CSGOTheme.colors.raisinBlack
+    val backgroundColor = CSGOTheme.colors.backgroundColor
     val systemUiController = rememberSystemUiController()
     SideEffect {
-        systemUiController.setStatusBarColor(color = raisinBlack)
+        systemUiController.setStatusBarColor(color = backgroundColor)
         systemUiController.setNavigationBarColor(color = Color.Black)
     }
     CompositionLocalProvider(

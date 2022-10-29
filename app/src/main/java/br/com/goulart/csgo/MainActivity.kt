@@ -6,36 +6,34 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import br.com.goulart.csgo.ui.theme.CSGOTheme
+import androidx.navigation.compose.rememberNavController
+import br.com.goulart.csgo.core.intent.core.NavigationManager
+import br.com.goulart.csgo.core.intent.graph.AppNavigation
+import br.com.goulart.csgo.core.uikit.theme.CSGOTheme
+import br.com.goulart.csgo.core.uikit.theme.CSGOTheme.colors
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var navManager: NavigationManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val navController = rememberNavController()
             CSGOTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                Surface(
+                    color = colors.backgroundColor,
+                    modifier = Modifier
+                        .fillMaxSize()
+                ) {
+                    AppNavigation(navController = navController, navManager = navManager)
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    CSGOTheme {
-        Greeting("Android")
     }
 }

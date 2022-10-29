@@ -4,6 +4,7 @@ import androidx.compose.ui.graphics.Color
 import br.com.goulart.csgo.core.uikit.theme.values.*
 
 data class AppColors(
+    val backgroundColor: Color = BackgroundColor,
     val yankeesBlue: Color = YankeesBlue,
     val raisinBlack: Color = RaisinBlack,
     val imperialRed: Color = ImperialRed,

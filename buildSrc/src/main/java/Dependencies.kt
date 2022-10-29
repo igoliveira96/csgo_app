@@ -4,9 +4,12 @@ object Dependencies {
 
         object Core {
             const val uikit = ":core:uikit"
+            const val intent = ":core:intent"
+            const val di = ":core:di"
         }
 
         object Features {
+            const val home = ":features:home"
         }
 
     }
@@ -27,6 +30,17 @@ object Dependencies {
         const val activity = "androidx.activity:activity-compose:${Versions.Compose.activity}"
         const val coil = "io.coil-kt:coil-compose:${Versions.Compose.coil}"
         const val accompanistSystemUi = "com.google.accompanist:accompanist-systemuicontroller:${Versions.Compose.accompanist}"
+        const val navigation = "androidx.navigation:navigation-compose:${Versions.Compose.navigation}"
+        const val navigationCommon = "androidx.navigation:navigation-common-ktx:${Versions.Compose.navigation}"
+        const val accompanistPager = "com.google.accompanist:accompanist-pager:${Versions.Compose.accompanist}"
+        const val accompanistPagerIndicators = "com.google.accompanist:accompanist-pager-indicators:${Versions.Compose.accompanist}"
+    }
+
+    object External {
+        const val gson = "com.google.code.gson:gson:${Versions.External.gson}"
+        const val hilt = "com.google.dagger:hilt-android:${Versions.External.hilt}"
+        const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.External.hilt}"
+        const val hiltCompose = "androidx.hilt:hilt-navigation-compose:${Versions.External.hiltCompose}"
     }
 
     object Test {

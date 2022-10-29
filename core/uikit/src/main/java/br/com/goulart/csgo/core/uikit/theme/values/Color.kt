@@ -2,6 +2,7 @@ package br.com.goulart.csgo.core.uikit.theme.values
 
 import androidx.compose.ui.graphics.Color
 
+val BackgroundColor = Color(	0XFF161621)
 val White20Percent = Color(	0X33FFFFFF)
 val White50Percent = Color(	0X80FFFFFF)
 val ImperialRed = Color(0XFFF42A35)

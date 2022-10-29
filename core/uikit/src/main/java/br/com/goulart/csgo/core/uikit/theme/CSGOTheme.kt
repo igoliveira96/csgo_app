@@ -8,10 +8,10 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 val LocalAppColors = compositionLocalOf { AppColors() }
 
 @Composable
-fun AppTheme(
+fun CSGOTheme(
     content: @Composable () -> Unit
 ) {
-    val raisinBlack = AppTheme.colors.raisinBlack
+    val raisinBlack = CSGOTheme.colors.raisinBlack
     val systemUiController = rememberSystemUiController()
     SideEffect {
         systemUiController.setStatusBarColor(color = raisinBlack)
@@ -24,7 +24,7 @@ fun AppTheme(
     }
 }
 
-object AppTheme {
+object CSGOTheme {
     val colors: AppColors
         @Composable
         @ReadOnlyComposable

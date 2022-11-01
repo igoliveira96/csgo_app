@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    kotlin("kapt")
 }
 
 apply {
@@ -24,6 +25,7 @@ dependencies {
     val features = Dependencies.Modules.Features
 
     implementation(project(core.uikit))
+    implementation(project(core.di))
 
     implementation(project(features.home))
 
@@ -31,8 +33,14 @@ dependencies {
     implementation(compose.navigationCommon)
 
     implementation(external.gson)
+    implementation(external.hilt)
+    kapt(external.hiltCompiler)
     implementation(external.hiltCompose)
 
     testImplementation(Dependencies.Test.jUnit)
 
+}
+
+kapt {
+    correctErrorTypes = true
 }

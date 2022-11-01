@@ -3,13 +3,19 @@ object Dependencies {
     object Modules {
 
         object Core {
+            const val commons = ":core:commons"
             const val uikit = ":core:uikit"
             const val intent = ":core:intent"
             const val di = ":core:di"
+            const val network = ":core:network"
         }
 
         object Features {
             const val home = ":features:home"
+        }
+
+        object Data {
+            const val match = ":data:match"
         }
 
     }
@@ -39,8 +45,16 @@ object Dependencies {
     object External {
         const val gson = "com.google.code.gson:gson:${Versions.External.gson}"
         const val hilt = "com.google.dagger:hilt-android:${Versions.External.hilt}"
+        const val hiltCore = "com.google.dagger:hilt-core:${Versions.External.hilt}"
         const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.External.hilt}"
         const val hiltCompose = "androidx.hilt:hilt-navigation-compose:${Versions.External.hiltCompose}"
+        const val okHttp = "com.squareup.okhttp3:okhttp:${Versions.External.okHttp}"
+        const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.External.retrofit}"
+        const val retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${Versions.External.retrofit}"
+        const val okHttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.External.okHttp}"
+        const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.External.coroutines}"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.External.coroutines}"
+        const val javaxInject = "javax.inject:javax.inject:${Versions.External.javaxInject}"
     }
 
     object Test {

@@ -11,13 +11,7 @@ apply {
 
 dependencies {
 
-    val core = Dependencies.Modules.Core
-    val features = Dependencies.Modules.Features
     val external = Dependencies.External
-
-    implementation(project(core.intent))
-
-    implementation(project(features.home))
 
     implementation(external.hilt)
     kapt(external.hiltCompiler)

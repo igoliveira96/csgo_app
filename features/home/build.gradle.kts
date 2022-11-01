@@ -25,27 +25,30 @@ android {
 dependencies {
 
     val core = Dependencies.Modules.Core
-    val features = Dependencies.Modules.Features
+    val data = Dependencies.Modules.Data
     val android = Dependencies.Android
     val compose = Dependencies.Compose
+    val external = Dependencies.External
 
-    implementation(Dependencies.Android.coreKtx)
-    implementation(Dependencies.Compose.ui)
-    implementation(Dependencies.Compose.material)
-    implementation(Dependencies.Compose.uiToolingPreview)
-    implementation(Dependencies.Compose.coil)
+    implementation(android.coreKtx)
+    implementation(compose.ui)
+    implementation(compose.material)
+    implementation(compose.uiToolingPreview)
+    implementation(compose.coil)
     implementation(compose.accompanistPager)
     implementation(compose.accompanistPagerIndicators)
-    implementation(Dependencies.Compose.coil)
-    implementation(Dependencies.Android.lifecycleViewModel)
-    implementation(Dependencies.Android.lifecycleCompose)
+    implementation(android.lifecycleViewModel)
+    implementation(android.lifecycleCompose)
     coreLibraryDesugaring(android.desbugar)
 
-    implementation(Dependencies.External.hilt)
-    kapt(Dependencies.External.hiltCompiler)
-    implementation (Dependencies.External.hiltCompose)
+    implementation(external.hilt)
+    kapt(external.hiltCompiler)
+    implementation (external.hiltCompose)
 
+    implementation(project(core.commons))
     implementation(project(core.uikit))
+
+    implementation(project(data.match))
 
     testImplementation(Dependencies.Test.jUnit)
     debugImplementation(Dependencies.Compose.uiTooling)

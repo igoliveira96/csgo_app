@@ -1,7 +1,7 @@
-package br.com.goulart.csgo.core.di.intent
+package br.com.goulart.csgo.core.intent.di
 
+import br.com.goulart.csgo.core.di.core.ApplicationScope
 import br.com.goulart.csgo.core.intent.core.NavigationManager
-import br.com.havaianas.seller.di.core.ApplicationScope
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

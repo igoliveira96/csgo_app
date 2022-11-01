@@ -1,5 +1,6 @@
 package br.com.goulart.csgo.core.intent.graph
 
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
@@ -18,6 +19,6 @@ fun NavGraphBuilder.addHomeNavGraph() {
 
 private fun NavGraphBuilder.addMatches() {
     composable(HomeDestination.Matches.createRoute()) {
-        HomeScreen()
+        HomeScreen(viewModel = hiltViewModel())
     }
 }

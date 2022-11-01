@@ -1,4 +1,4 @@
-package br.com.havaianas.seller.di.core
+package br.com.goulart.csgo.core.di.core
 
 import javax.inject.Qualifier
 

@@ -19,6 +19,9 @@ object Versions {
         const val gson = "2.9.1"
         const val hilt = "2.42"
         const val hiltCompose = "1.0.0"
+        const val retrofit = "2.9.0"
+        const val okHttp = "4.10.0"
+        const val javaxInject = "1"
     }
 
     object Test {

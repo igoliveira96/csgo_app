@@ -17,11 +17,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import br.com.goulart.csgo.core.uikit.R
+import br.com.goulart.csgo.core.uikit.R as RUiKit
 import br.com.goulart.csgo.core.uikit.theme.CSGOTheme.colors
+import br.com.goulart.csgo.core.uikit.utils.*
 import br.com.goulart.csgo.data.match.model.*
+import br.com.goulart.csgo.utils.MatchStatus
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import java.util.*
 
 @Composable
 fun MatchCard(match: Match) {
@@ -31,7 +34,10 @@ fun MatchCard(match: Match) {
         backgroundColor = colors.yankeesBlue,
     ) {
         Column {
-            MatchTime("Hoje, 21:00")
+            match.beginAt.toDate()?.let { date ->
+                MatchTime(match.status, date)
+            }
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -47,25 +53,26 @@ fun MatchCard(match: Match) {
 }
 
 @Composable
-private fun MatchTime(
-    text: String
-) {
+private fun MatchTime(status: String, date: Date) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.End
     ) {
         Surface(
-            shape = RoundedCornerShape(bottomStart = 24.dp, topEnd = 24.dp),
-            color = colors.lotion20Percent
+            shape = RoundedCornerShape(bottomStart = 16.dp, topEnd = 24.dp),
+            color = if (status == MatchStatus.RUNNING.value) colors.imperialRed else colors.lotion20Percent
         ) {
             Text(
                 modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp),
                 color = Color.White,
                 style = TextStyle.Default.copy(
-                  fontSize = 12.sp,
+                    fontSize = 8.sp,
                     fontWeight = FontWeight.W700
                 ),
-                text = text,
+                text = when(status) {
+                    MatchStatus.RUNNING.value -> "AGORA"
+                    else -> if (date.isDayOfThisWeek()) date.toEventTime() else date.toShortDate()
+                },
             )
         }
     }
@@ -97,7 +104,7 @@ private fun TeamLogo(opponent: Opponent) {
                 .data(opponent.imageUrl)
                 .crossfade(true)
                 .build(),
-            placeholder = painterResource(R.drawable.ic_team_logo),
+            placeholder = painterResource(RUiKit.drawable.ic_team_logo),
             contentDescription = null,
             contentScale = ContentScale.Fit,
             modifier = Modifier.size(60.dp)
@@ -125,7 +132,7 @@ private fun League(league: League, leagueSerie: LeagueSerie) {
                 .data(league.imageUrl)
                 .crossfade(true)
                 .build(),
-            placeholder = painterResource(R.drawable.ic_team_logo),
+            placeholder = painterResource(RUiKit.drawable.ic_team_logo),
             contentDescription = null,
             contentScale = ContentScale.Fit,
             modifier = Modifier.size(24.dp)

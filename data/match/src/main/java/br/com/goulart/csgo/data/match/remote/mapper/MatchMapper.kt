@@ -8,6 +8,7 @@ internal object MatchMapper : BaseMapper<MatchResponse, Match> {
 
     override fun toDomain(remote: MatchResponse): Match = Match(
         beginAt = remote.beginAt,
+        status = remote.status,
         opponents = OpponentsMapper.toDomain(remote.opponents),
         league = LeagueMapper.toDomain(remote.league),
         leagueSerie = SerieMapper.toDomain(remote.leagueSerie)
@@ -15,6 +16,7 @@ internal object MatchMapper : BaseMapper<MatchResponse, Match> {
 
     override fun fromDomain(domain: Match): MatchResponse = MatchResponse(
         beginAt = domain.beginAt,
+        status = domain.status,
         opponents = OpponentsMapper.fromDomain(domain.opponents),
         league = LeagueMapper.fromDomain(domain.league),
         leagueSerie = SerieMapper.fromDomain(domain.leagueSerie)

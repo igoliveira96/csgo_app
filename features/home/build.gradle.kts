@@ -30,13 +30,15 @@ dependencies {
     val compose = Dependencies.Compose
     val external = Dependencies.External
 
-    implementation(android.coreKtx)
     implementation(compose.ui)
     implementation(compose.material)
     implementation(compose.uiToolingPreview)
     implementation(compose.coil)
     implementation(compose.accompanistPager)
     implementation(compose.accompanistPagerIndicators)
+    implementation(compose.paging)
+
+    implementation(android.coreKtx)
     implementation(android.lifecycleViewModel)
     implementation(android.lifecycleCompose)
     coreLibraryDesugaring(android.desbugar)

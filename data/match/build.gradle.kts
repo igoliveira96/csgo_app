@@ -14,10 +14,13 @@ dependencies {
 
     val core = Dependencies.Modules.Core
     val external = Dependencies.External
+    val compose = Dependencies.Compose
 
     implementation(project(core.commons))
     implementation(project(core.di))
     implementation(project(core.network))
+
+    implementation(compose.paging)
 
     implementation(external.coroutinesCore)
     implementation(external.retrofit)

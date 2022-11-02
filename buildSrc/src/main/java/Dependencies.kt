@@ -40,6 +40,7 @@ object Dependencies {
         const val navigationCommon = "androidx.navigation:navigation-common-ktx:${Versions.Compose.navigation}"
         const val accompanistPager = "com.google.accompanist:accompanist-pager:${Versions.Compose.accompanist}"
         const val accompanistPagerIndicators = "com.google.accompanist:accompanist-pager-indicators:${Versions.Compose.accompanist}"
+        const val paging = "androidx.paging:paging-compose:${Versions.Compose.paging}"
     }
 
     object External {

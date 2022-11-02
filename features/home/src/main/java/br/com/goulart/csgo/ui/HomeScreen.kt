@@ -2,55 +2,127 @@ package br.com.goulart.csgo.ui
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.compose.ExperimentalLifecycleComposeApi
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.paging.LoadState
+import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.items
+import br.com.goulart.csgo.R
 import br.com.goulart.csgo.components.MatchCard
-import br.com.goulart.csgo.core.uikit.components.Loading
+import br.com.goulart.csgo.core.uikit.components.LoadingView
+import br.com.goulart.csgo.core.uikit.components.PageTitle
+import br.com.goulart.csgo.core.uikit.theme.CSGOTheme.colors
 
-@OptIn(ExperimentalLifecycleComposeApi::class)
 @Composable
 fun HomeScreen(viewModel: HomeViewModel) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    val lazyPagingItems = viewModel.getMatches().collectAsLazyPagingItems()
 
     Column {
+        PageTitle(title = R.string.matches)
+
+        LazyColumn(
+            contentPadding = PaddingValues(24.dp),
+            verticalArrangement = Arrangement.spacedBy(24.dp)
+        ) {
+            items(lazyPagingItems) { match ->
+                match?.let {
+                    MatchCard(match)
+                }
+            }
+
+            lazyPagingItems.apply {
+                when {
+                    loadState.refresh is LoadState.Loading -> {
+                        item {
+                            ShowLoading(modifier = Modifier.fillParentMaxSize())
+                        }
+                    }
+                    loadState.append is LoadState.Loading -> {
+                        item {
+                            ShowLoading(modifier = Modifier.fillParentMaxWidth())
+                        }
+                    }
+                    loadState.refresh is LoadState.Error -> {
+                        val e = lazyPagingItems.loadState.refresh as LoadState.Error
+                        item {
+                            ShowError(
+                                message = e.error.localizedMessage ?: stringResource(R.string.error_message),
+                                modifier = Modifier.fillParentMaxSize(),
+                                onClickRetry = { retry() }
+                            )
+                        }
+                    }
+                    loadState.append is LoadState.Error -> {
+                        val e = lazyPagingItems.loadState.append as LoadState.Error
+                        item {
+                            ShowError(
+                                message = e.error.localizedMessage ?: stringResource(R.string.error_message),
+                                onClickRetry = { retry() }
+                            )
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun ShowLoading(modifier: Modifier) {
+    Row(
+        modifier = modifier,
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        LoadingView()
+    }
+}
+
+@Composable
+private fun ShowError(
+    modifier: Modifier = Modifier,
+    message: String,
+    onClickRetry: () -> Unit
+) {
+    Column(
+        modifier = modifier,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
         Text(
-            modifier = Modifier.padding(24.dp),
-            text = "Partidas",
-            color = Color.White,
+            text = message,
+            color = colors.imperialRed,
             style = TextStyle.Default.copy(
-                fontSize = 32.sp,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.W500
             )
         )
 
-        if (state.loading) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center,
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Loading()
-            }
-        }
+        Spacer(modifier = Modifier.height(16.dp))
 
-        LazyColumn(
-            contentPadding = PaddingValues(horizontal = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(24.dp)
+        Button(
+            onClick = onClickRetry,
+            colors = ButtonDefaults.buttonColors(
+                backgroundColor = colors.lotion20Percent,
+            )
         ) {
-            items(state.matches.matches) { match ->
-                MatchCard(match)
-            }
+            Text(
+                text = stringResource(R.string.try_again),
+                color = Color.White,
+                style = TextStyle.Default.copy(
+                    fontSize = 16.sp
+                )
+            )
         }
     }
 }

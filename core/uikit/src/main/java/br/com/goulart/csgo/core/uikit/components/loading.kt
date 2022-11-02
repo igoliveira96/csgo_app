@@ -5,7 +5,7 @@ import androidx.compose.runtime.Composable
 import br.com.goulart.csgo.core.uikit.theme.CSGOTheme.colors
 
 @Composable
-fun Loading() {
+fun LoadingView() {
     CircularProgressIndicator(
         color = colors.white50Percent
     )

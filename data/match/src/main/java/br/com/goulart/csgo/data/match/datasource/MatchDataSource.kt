@@ -1,10 +1,6 @@
 package br.com.goulart.csgo.data.match.datasource
 
-import br.com.goulart.csgo.data.match.model.Matches
-import kotlinx.coroutines.flow.Flow
+import androidx.paging.PagingSource
+import br.com.goulart.csgo.data.match.model.Match
 
-internal interface MatchDataSource {
-
-    fun getMatches(page: Int, perPage: Int): Flow<Matches>
-
-}
+internal abstract class MatchDataSource : PagingSource<Int, Match>()

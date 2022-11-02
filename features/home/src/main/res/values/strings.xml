@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="now">AGORA</string>
+    <string name="matches">Partidas</string>
+    <string name="error_message">Não foi possível carregar as partidas.</string>
+    <string name="try_again">Tentar novamente!</string>
 </resources>

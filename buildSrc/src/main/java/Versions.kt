@@ -27,6 +27,7 @@ object Versions {
 
     object Test {
         const val jUnit = "4.13.2"
+        const val androidTestRules = "1.4.0"
     }
 
 }

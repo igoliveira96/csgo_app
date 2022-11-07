@@ -60,6 +60,9 @@ object Dependencies {
 
     object Test {
         const val jUnit = "junit:junit:${Versions.Test.jUnit}"
+        const val androidxTestRules = "androidx.test:rules:${Versions.Test.androidTestRules}"
+        const val composeJUnit = "androidx.compose.ui:ui-test-junit4:${Versions.Compose.core}"
+        const val composeManifest = "androidx.compose.ui:ui-test-manifest:${Versions.Compose.core}"
     }
 
 }

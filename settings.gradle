@@ -12,7 +12,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "CSGO APP"
+rootProject.name = "APP CSGO"
 include ':app'
 include ':core:uikit'
 include ':core:intent'

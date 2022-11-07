@@ -15,6 +15,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.com.goulart.csgo.core.uikit.R as RUiKit
@@ -142,5 +143,13 @@ private fun League(league: League, leagueSerie: LeagueSerie) {
             text = "${league.name} + ${leagueSerie.name}",
             color = Color.White
         )
+    }
+}
+
+@Preview
+@Composable
+fun PreviewMatchCard() {
+    Column {
+        MatchCard(match = Match.EXAMPLE)
     }
 }

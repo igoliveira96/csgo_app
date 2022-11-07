@@ -29,6 +29,7 @@ dependencies {
     val android = Dependencies.Android
     val compose = Dependencies.Compose
     val external = Dependencies.External
+    val test = Dependencies.Test
 
     implementation(compose.ui)
     implementation(compose.material)
@@ -52,8 +53,12 @@ dependencies {
 
     implementation(project(data.match))
 
-    testImplementation(Dependencies.Test.jUnit)
-    debugImplementation(Dependencies.Compose.uiTooling)
+    testImplementation(test.jUnit)
+    debugImplementation(compose.uiTooling)
+
+    androidTestImplementation(test.composeJUnit)
+    androidTestImplementation(test.androidxTestRules)
+    debugImplementation(test.composeManifest)
 }
 
 kapt {
